@@ -1,0 +1,15 @@
+version: "3.9"
+
+services:
+  auth-service:
+    image: spring-security-oauth-hands-on:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: spring-security-oauth-hands-on
+    ports:
+      - "8081:8081"
+    environment:
+      REDIS_HOST: name-redis-stack
+      REDIS_PORT: 6379
+    restart: "no"

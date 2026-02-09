@@ -1,4 +1,4 @@
-package org.example.auth.springsecurityoauthhandson;
+package org.springsecurity.oauth.handson;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
