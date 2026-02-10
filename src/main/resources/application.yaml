@@ -8,7 +8,9 @@ server:
     timeout-per-shutdown-phase: "60s"
   tomcat:
     threads.max: 500
-
+logging:
+  level:
+    root: INFO
 spring:
   application:
     name: spring-security-oauth-hands-on
@@ -16,3 +18,32 @@ spring:
     redis:
       host: ${REDIS_HOST:localhost}
       port: ${REDIS_PORT:6379}
+    mongodb:
+      uri: ${MONGODB_URI:}
+      database: ${MONGODB_DATABASE:kyc}
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: ${GOOGLE_CLIENT_ID:}
+            client-secret: ${GOOGLE_CLIENT_SECRET:}
+            scope: openid, profile, email
+          github:
+            client-id: ${GITHUB_CLIENT_ID:}
+            client-secret: ${GITHUB_CLIENT_SECRET:}
+            scope: read:user, user:email
+
+        provider:
+          google:
+            issuer-uri: https://accounts.google.com
+          github:
+            authorization-uri: https://github.com/login/oauth/authorize
+            token-uri: https://github.com/login/oauth/access_token
+            user-info-uri: https://api.github.com/user
+            user-name-attribute: id
+
+      resource-server:
+        trusted-issuers:
+          - https://accounts.google.com
+          - https://token.actions.githubusercontent.com
